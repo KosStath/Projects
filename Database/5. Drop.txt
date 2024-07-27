@@ -1,0 +1,92 @@
+-- Drop foreign keys 
+
+-- Drop foreign keys referencing actors_pk
+ALTER TABLE casting DROP CONSTRAINT fk_cast_actor_id;
+ALTER TABLE casting DROP CONSTRAINT fk_cast_series_id;
+
+-- Drop foreign key referencing fk_viewership_viewer_id
+ALTER TABLE viewership DROP CONSTRAINT fk_viewership_viewer_id;
+
+-- Drop foreign keys referencing fk_episodes_series_id and fk_season_series
+ALTER TABLE series DROP CONSTRAINT fk_episodes_series_id;
+ALTER TABLE series DROP CONSTRAINT fk_season_series;
+
+-- Drop constraints 
+
+-- CONSTRAINTS FOR THE VIEWERS TABLE
+ALTER TABLE viewers DROP CONSTRAINT fk_viewership_viewer_id;
+ALTER TABLE viewers DROP CONSTRAINT fk_episodes_series_id;
+ALTER TABLE viewers DROP CONSTRAINT fk_season_series;
+ALTER TABLE viewers DROP CONSTRAINT pk_v_email;
+
+-- CONSTRAINTS FOR THE EPISODES TABLE
+ALTER TABLE episodes DROP CONSTRAINT fk_episodes_series_id;
+ALTER TABLE episodes DROP CONSTRAINT fk_season_series;
+ALTER TABLE episodes DROP CONSTRAINT pk_episodes;
+
+-- CONSTRAINTS FOR THE SERIES TABLE
+ALTER TABLE series DROP CONSTRAINT fk_episodes_series_id;
+ALTER TABLE series DROP CONSTRAINT fk_season_series;
+ALTER TABLE series DROP CONSTRAINT fk_cast_series_id;
+ALTER TABLE series DROP CONSTRAINT fk_cast_actor_id;
+ALTER TABLE series DROP CONSTRAINT pk_series_id;
+
+-- CONSTRAINTS FOR THE ACTORS TABLE
+ALTER TABLE actors DROP CONSTRAINT check_description_format;
+ALTER TABLE actors DROP CONSTRAINT chk_production_before_release;
+ALTER TABLE actors DROP CONSTRAINT check_release_date_format;
+ALTER TABLE actors DROP CONSTRAINT check_production_date_format;
+ALTER TABLE actors DROP CONSTRAINT fk_actor_id;
+ALTER TABLE actors DROP CONSTRAINT uk_title;
+ALTER TABLE actors DROP CONSTRAINT actors_pk;
+
+-- Drop triggers 
+
+-- Trigger for generating a new value (1) for episode_id for each new combination season_id, series_id
+DROP TRIGGER episode_id_trigger;
+
+-- Trigger for generating a new value (1) for season_id for each series
+DROP TRIGGER season_id_trigger;
+
+-- Trigger to ensure screening_date >= release_date
+DROP TRIGGER trg_check_screening_date;
+
+-- Drop sequences 
+
+DROP SEQUENCE VIEWERSHIP_ID_SEQ;
+DROP SEQUENCE GEN_VAL_VIEWERS;
+DROP SEQUENCE EPISODE_ID_SEQ;
+DROP SEQUENCE SEASON_ID_SEQ;
+DROP SEQUENCE GEN_VAL_SERIES;
+DROP SEQUENCE GEN_VAL_ACTORS;
+
+-- Drop tables 
+
+DROP TABLE viewership;
+DROP TABLE viewers;
+DROP TABLE episodes;
+DROP TABLE seasons;
+DROP TABLE casting;
+DROP TABLE series;
+DROP TABLE actors;
+
+/*
+-- Check that the entire schema has been dropped
+
+SELECT table_name
+FROM all_tables
+WHERE owner = 'your_schema';
+
+SELECT sequence_name
+FROM all_sequences
+WHERE sequence_owner = 'your_schema';
+
+SELECT trigger_name
+FROM all_triggers
+WHERE table_owner = 'your_schema';
+
+SELECT constraint_name
+FROM all_constraints
+WHERE owner = 'your_schema'
+  AND table_name NOT LIKE 'BIN%';
+*/

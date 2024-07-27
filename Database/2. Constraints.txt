@@ -1,0 +1,197 @@
+--CONSTRAINTS FOR THE ACTORS TABLE
+
+ALTER TABLE actors
+ADD CONSTRAINT actors_pk PRIMARY KEY (actor_id);
+
+ALTER TABLE actors
+ADD CONSTRAINT actors_unique_email UNIQUE (a_email);
+
+ALTER TABLE actors
+ADD CONSTRAINT actors_email_format
+CHECK (REGEXP_LIKE(a_email, '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'));
+
+ALTER TABLE actors
+ADD CONSTRAINT actors_valid_gender
+CHECK (a_gender IN ('F', 'M', 'O'));
+
+ALTER TABLE actors
+ADD CONSTRAINT actors_valid_DOB
+CHECK (TO_DATE(a_DOB, 'DD-MON-YYYY') = TO_DATE(a_DOB, 'DD-MON-YYYY'));
+
+
+--CONSTRAINTS FOR THE SERIES TABLE
+
+ALTER TABLE series
+ADD CONSTRAINT pk_series_id PRIMARY KEY (series_id);
+
+ALTER TABLE series
+ADD CONSTRAINT uk_title UNIQUE (title);
+
+ALTER TABLE series
+ADD CONSTRAINT fk_actor_id
+FOREIGN KEY (actor_id)
+REFERENCES actors(actor_id);
+
+ALTER TABLE series
+ADD CONSTRAINT check_production_date_format
+CHECK (TO_DATE(production_date, 'DD-MON-YYYY') = TO_DATE(production_date, 'DD-MON-YYYY'));
+
+ALTER TABLE series
+ADD CONSTRAINT check_release_date_format
+CHECK (TO_DATE(release_date, 'DD-MON-YYYY') = TO_DATE(release_date, 'DD-MON-YYYY'));
+
+ALTER TABLE series
+ADD CONSTRAINT chk_production_before_release
+CHECK (production_date < release_date);
+
+ALTER TABLE series
+MODIFY description VARCHAR2(255)
+CONSTRAINT check_description_format
+CHECK (REGEXP_LIKE(description, '^[A-Za-z0-9.,!? ''''\-]+$'));
+
+
+--CONSTRAINTS FOR THE CASTING TABLE
+
+ALTER TABLE casting
+ADD CONSTRAINT pk_casting PRIMARY KEY (actor_id, series_id);
+
+ALTER TABLE casting
+ADD CONSTRAINT fk_cast_actor_id
+FOREIGN KEY (actor_id)
+REFERENCES actors(actor_id);
+
+ALTER TABLE casting
+ADD CONSTRAINT fk_cast_series_id
+FOREIGN KEY (series_id)
+REFERENCES series(series_id);
+
+
+--CONSTRAINTS FOR THE SEASONS TABLE
+
+ALTER TABLE seasons
+ADD CONSTRAINT pk_seasons PRIMARY KEY (season_id, series_id);
+
+ALTER TABLE seasons
+ADD CONSTRAINT fk_seasons_series_id
+FOREIGN KEY (series_id)
+REFERENCES series(series_id);
+
+
+--CONSTRAINTS FOR THE EPISODES TABLE
+
+ALTER TABLE episodes
+ADD CONSTRAINT pk_episodes PRIMARY KEY (episode_id, season_id, series_id);
+
+ALTER TABLE episodes
+ADD CONSTRAINT fk_season_series
+FOREIGN KEY (season_id, series_id)
+REFERENCES seasons(season_id, series_id);
+
+ALTER TABLE episodes
+ADD CONSTRAINT fk_episodes_series_id
+FOREIGN KEY (series_id)
+REFERENCES series(series_id);
+
+
+--CONSTRAINTS FOR THE VIEWERS TABLE
+
+ALTER TABLE viewers
+ADD CONSTRAINT pk_v_email PRIMARY KEY (v_email);
+
+ALTER TABLE viewers
+ADD CONSTRAINT uq_viewer_id UNIQUE (viewer_id);
+
+ALTER TABLE viewers
+ADD CONSTRAINT check_email_format
+CHECK (REGEXP_LIKE(v_email, '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'));
+
+ALTER TABLE viewers
+ADD CONSTRAINT check_v_gender CHECK (v_gender IN ('F', 'M', 'O'));
+
+ALTER TABLE viewers
+ADD CONSTRAINT viewers_valid_DOB
+CHECK (TO_DATE(v_DOB, 'DD-MON-YYYY') = TO_DATE(v_DOB, 'DD-MON-YYYY'));
+
+
+--CONSTRAINTS FOR THE VIEWERSHIP TABLE
+
+ALTER TABLE viewership
+ADD CONSTRAINT pk_viewership_id PRIMARY KEY (viewership_id);
+
+ALTER TABLE viewership
+ADD CONSTRAINT fk_viewership_viewer_id
+FOREIGN KEY (viewer_id)
+REFERENCES viewers(viewer_id);
+
+ALTER TABLE viewership
+ADD CONSTRAINT fk_viewership_episode_id
+FOREIGN KEY (episode_id, season_id, series_id)
+REFERENCES episodes(episode_id, season_id, series_id);
+
+ALTER TABLE viewership
+ADD CONSTRAINT check_screening_date
+CHECK (TO_DATE(screening_date, 'DD-MON-YYYY') = TO_DATE(screening_date, 'DD-MON-YYYY'));
+
+ALTER TABLE viewership
+ADD CONSTRAINT fk_series_release_date
+FOREIGN KEY (series_id)
+REFERENCES series(series_id)
+ENABLE VALIDATE;
+
+
+/*Commands
+
+--Show all primary keys
+
+SELECT
+  acc.table_name,
+  acc.constraint_name,
+  LISTAGG(acc.column_name, ', ') WITHIN GROUP (ORDER BY acc.position) AS included_columns
+FROM all_cons_columns acc
+JOIN all_constraints ac ON acc.constraint_name = ac.constraint_name
+WHERE ac.constraint_type = 'P'
+  AND ac.status = 'ENABLED'
+  AND acc.table_name IN ('ACTORS', 'SERIES', 'CASTING', 'SEASONS', 'EPISODES', 'VIEWERS', 'VIEWERSHIP')
+GROUP BY acc.table_name, acc.constraint_name
+ORDER BY acc.table_name, acc.constraint_name;
+
+--Show all foreign keys
+
+SELECT
+  acc.table_name,
+  acc.constraint_name AS foreign_key_name,
+  LISTAGG(acc.column_name, ', ') WITHIN GROUP (ORDER BY acc.position) AS columns_name
+FROM all_cons_columns acc
+JOIN all_constraints ac ON acc.constraint_name = ac.constraint_name
+WHERE ac.constraint_type = 'R'
+  AND ac.status = 'ENABLED'
+  AND acc.table_name IN ('ACTORS', 'SERIES', 'CASTING', 'SEASONS', 'EPISODES', 'VIEWERS', 'VIEWERSHIP')
+GROUP BY acc.table_name, acc.constraint_name
+ORDER BY acc.table_name, acc.constraint_name;
+
+--Show all unique constraints
+
+SELECT
+  acc.table_name,
+  acc.constraint_name,
+  acc.column_name
+FROM all_cons_columns acc
+JOIN all_constraints ac ON acc.constraint_name = ac.constraint_name
+WHERE ac.constraint_type = 'U'
+  AND ac.status = 'ENABLED'
+  AND acc.table_name IN ('ACTORS', 'SERIES', 'CASTING', 'SEASONS', 'EPISODES', 'VIEWERS', 'VIEWERSHIP')
+ORDER BY acc.table_name, acc.constraint_name, acc.position;
+
+--Show all check constraints
+
+SELECT
+  acc.table_name,
+  acc.constraint_name,
+  acc.column_name,
+  ac.constraint_type,
+  ac.search_condition
+FROM all_cons_columns acc
+JOIN all_constraints ac ON acc.constraint_name = ac.constraint_name
+WHERE acc.table_name IN ('ACTORS', 'SERIES', 'CASTING', 'SEASONS', 'EPISODES', 'VIEWERS', 'VIEWERSHIP')
+ORDER BY acc.table_name, acc.constraint_name, acc.position;
+*/

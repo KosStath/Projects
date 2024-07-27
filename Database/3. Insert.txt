@@ -1,0 +1,286 @@
+--Inserting data for actors
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Brian', 'Cranston', 'br.cr@email.com', 'USA', 'M', TO_DATE('01-JAN-1958', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Rhea', 'Seehorn', 'r.seeh@email.com', 'USA', 'F', TO_DATE('15-MAY-1975', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Bob', 'Odenkirk', 'bob.od@email.com', 'USA', 'M', TO_DATE('10-JUL-1968', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Anna', 'Gunn', 'anna.gunn@email.com', 'USA', 'F', TO_DATE('22-SEP-1978', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Michael', 'Hall', 'm.hall@email.com', 'USA', 'M', TO_DATE('03-JUN-1977', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Frances', 'Conroy', 'fr.con@email.com', 'USA', 'F', TO_DATE('14-DEC-1953', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Alvaro', 'Morte', 'al.mor@email.com', 'Spain', 'M', TO_DATE('28-OCT-1978', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Ursula', 'Corbero', 'ur.corb@email.com', 'Spain', 'F', TO_DATE('12-MAR-1980', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Bella', 'Ramsey', 'b.ram@email.com', 'USA', 'F', TO_DATE('25-JUL-1994', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Pedro', 'Pascal', 'p.pasc@email.com', 'USA', 'M', TO_DATE('07-NOV-1975', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Jared', 'Haris', 'j.haris@email.com', 'England', 'M', TO_DATE('02-APR-1959', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Stellan', 'Skarsgard', 'st.skar@email.com', 'Sweden', 'M', TO_DATE('02-APR-1955', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Brian', 'Cox', 'b.cox@email.com', 'Scotland', 'M', TO_DATE('02-APR-1946', 'DD-MON-YYYY'));
+
+INSERT INTO actors (actor_id, a_fname, a_lname, a_email, a_country, a_gender, a_DOB)
+VALUES (GEN_VAL_ACTORS.NEXTVAL, 'Josh', 'Colne', 'j.col@email.com', 'Scotland', 'M', TO_DATE('02-APR-1976', 'DD-MON-YYYY'));
+
+
+--Inserting data for viewers
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('yannis.pap@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Yannis', 'Papadopoulos', 'Thivon 36', 'Thessaloniki', 'Greece', 'M', TO_DATE('01-JAN-1990', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('char.gous@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Charlambos', 'Gousios', 'Saint Dimitriou 85', 'Thessaloniki', 'Greece', 'M', TO_DATE('15-MAY-1985', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('mat.chris@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Mathaios', 'Christodoulou', 'Iktinou 5', 'Thessaloniki', 'Greece', 'M', TO_DATE('10-JUL-1992', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('elefth.chr@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Eleftheria', 'Chronopoulou', 'Lenorman 168', 'Athens', 'Greece', 'F', TO_DATE('22-SEP-1988', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('ethan.miller@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Ethan', 'Miller', '202 Cedar St', 'London', 'England', 'M', TO_DATE('05-FEB-1995', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('fiona.garcia@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Fiona', 'Garcia', 'Barajas 38', 'Barcelona', 'Spain', 'F', TO_DATE('18-APR-1991', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('grace.clark@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Grace', 'Clark', '404 Birch St', 'London', 'England', 'F', TO_DATE('03-JUN-1987', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('henry.nguyen@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Henry', 'Nguyen', 'Tiergarden 159', 'Berlin', 'Germany', 'M', TO_DATE('14-DEC-1993', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('ivy.gomez@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Ivy', 'Gomez', 'Avenida 529', 'Madrid', 'Spain', 'F', TO_DATE('09-AUG-1986', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('jack.martin@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Jack', 'Martin', '707 Maple St', 'London', 'England', 'M', TO_DATE('28-OCT-1998', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('karen.lopez@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Karen', 'Lopez', 'Calle 808', 'Madrid', 'Spain', 'F', TO_DATE('12-MAR-1997'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('leo.chatz@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Leonidas', 'Chatzopoulos', 'Psaron 4', 'Athens', 'Greece', 'M', TO_DATE('25-JUL-1994', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('mia.wang@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Mia', 'Wang', '1010 Pine St', 'Berlin', 'Germany', 'F', TO_DATE('07-NOV-1989', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('nathan.kim@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Nathan', 'Kim', 'Mauritskade 226', 'Amsterdam', 'The Netherlands', 'M', TO_DATE('19-JAN-1996', 'DD-MON-YYYY'));
+
+INSERT INTO viewers (v_email, viewer_id, v_fname, v_lname, v_address, v_city, v_country, v_gender, v_DOB)
+VALUES ('ol.pan@email.com', GEN_VAL_VIEWERS.NEXTVAL, 'Olga', 'Panagiotou', 'Saint Georgiou 4', 'Athens', 'Greece', 'F', TO_DATE('02-APR-1999', 'DD-MON-YYYY'));
+
+
+--Inserting data for series
+
+INSERT INTO series (series_id, title, description, actor_id, production_date, release_date, country_origin)
+VALUES (GEN_VAL_SERIES.NEXTVAL, 'Breaking Bad', 'High school chemistry teacher turned methamphetamine manufacturer.', 1, TO_DATE('01-JAN-2006', 'DD-MON-YYYY'), TO_DATE('01-JAN-2008', 'DD-MON-YYYY'), 'USA');
+
+INSERT INTO series (series_id, title, description, actor_id, production_date, release_date, country_origin)
+VALUES (GEN_VAL_SERIES.NEXTVAL, 'Better Call Saul', 'Prequel to Breaking Bad, following the transformation of Jimmy McGill to Saul Goodman.', 2, TO_DATE('15-JAN-2013', 'DD-MON-YYYY'), TO_DATE('15-FEB-2015', 'DD-MON-YYYY'), 'USA');
+
+INSERT INTO series (series_id, title, description, actor_id, production_date, release_date, country_origin)
+VALUES (GEN_VAL_SERIES.NEXTVAL, 'Dexter', 'Forensic blood splatter analyst by day, serial killer by night.', 5, TO_DATE('01-MAR-2004', 'DD-MON-YYYY'), TO_DATE('10-MAR-2006', 'DD-MON-YYYY'), 'USA');
+
+INSERT INTO series (series_id, title, description, actor_id, production_date, release_date, country_origin)
+VALUES (GEN_VAL_SERIES.NEXTVAL, 'Six Feet Under', 'Family-run funeral home dealing with life and death.', 5, TO_DATE('01-APR-2002', 'DD-MON-YYYY'), TO_DATE('22-APR-2004', 'DD-MON-YYYY'), 'USA');
+
+INSERT INTO series (series_id, title, description, actor_id, production_date, release_date, country_origin)
+VALUES (GEN_VAL_SERIES.NEXTVAL, 'Game of Thrones', 'Epic fantasy series based on A Song of Ice and Fire novels.', 5, TO_DATE('01-MAY-2010', 'DD-MON-YYYY'), TO_DATE('05-MAY-2011', 'DD-MON-YYYY'), 'UK');
+
+INSERT INTO series (series_id, title, description, actor_id, production_date, release_date, country_origin)
+VALUES (GEN_VAL_SERIES.NEXTVAL, 'Chernobyl', 'Dramatization of the 1986 Chernobyl nuclear disaster.', 6, TO_DATE('01-JUN-2018', 'DD-MON-YYYY'), TO_DATE('18-JUN-2019', 'DD-MON-YYYY'), 'UK');
+
+INSERT INTO series (series_id, title, description, actor_id, production_date, release_date, country_origin)
+VALUES (GEN_VAL_SERIES.NEXTVAL, 'Succession', 'Drama about a wealthy family''s power struggle for control of a media empire.', 7, TO_DATE('01-JUL-2017', 'DD-MON-YYYY'), TO_DATE('03-JUL-2018', 'DD-MON-YYYY'), 'USA');
+
+INSERT INTO series (series_id, title, description, actor_id, production_date, release_date, country_origin)
+VALUES (GEN_VAL_SERIES.NEXTVAL, 'Casa de Papel', 'A group of robbers plan and execute a heist on the Royal Mint of Spain.', 8, TO_DATE('01-AUG-2016', 'DD-MON-YYYY'), TO_DATE('14-AUG-2017', 'DD-MON-YYYY'), 'Spain');
+
+INSERT INTO series (series_id, title, description, actor_id, production_date, release_date, country_origin)
+VALUES (GEN_VAL_SERIES.NEXTVAL, 'The Last of Us', 'Post-apocalyptic drama based on the video game of the same name.', 9, TO_DATE('01-SEP-2022', 'DD-MON-YYYY'), TO_DATE('15-JAN-2023', 'DD-MON-YYYY'), 'Canada');
+
+
+--Inserting data for seasons 
+
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 1);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 1);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 1);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 1);
+
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 2);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 2);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 2);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 2);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 2);
+
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 3);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 3);
+
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 4);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 4);
+
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 5);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 5);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 5);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 5);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 5);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 5);
+
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 6);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 6);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 6);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 6);
+
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 7);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 7);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 7);
+
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 8);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 8);
+
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 9);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 9);
+INSERT INTO seasons (season_id, series_id) VALUES (SEASON_ID_SEQ.NEXTVAL, 9);
+
+
+-- Inserting data for casting
+
+INSERT INTO casting VALUES (1, 1, 'Walter White');
+INSERT INTO casting VALUES (2, 2, 'Kim Wexler');
+INSERT INTO casting VALUES (3, 2, 'Jimmy McGill');
+INSERT INTO casting VALUES (4, 1, 'Skyler White');
+INSERT INTO casting VALUES (5, 3, 'Dexter Morgan');
+INSERT INTO casting VALUES (5, 4, 'David Fisher');
+INSERT INTO casting VALUES (6, 4, 'Ruth Fisher');
+INSERT INTO casting VALUES (7, 8, 'El profesor');
+INSERT INTO casting VALUES (8, 8, 'Tokio');
+INSERT INTO casting VALUES (9, 5, 'Lyanna Mormont');
+INSERT INTO casting VALUES (9, 9, 'Ellie Williams');
+INSERT INTO casting VALUES (10, 5, 'Oberyn Martell');
+INSERT INTO casting VALUES (10, 9, 'Joel Miller');
+INSERT INTO casting VALUES (11, 6, 'Valery Legasov');
+INSERT INTO casting VALUES (12, 6, 'Boris Shcherbina');
+INSERT INTO casting VALUES (13, 7, 'Logan Roy');
+
+
+-- Inserting data into episodes table. Note: Values in length column are in seconds.
+
+-- Series 1: Breaking Bad
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Pilot', 1, 1, 2700);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Cat''s in the Bag...', 2, 1, 2880);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, '...And the Bag''s in the River', 2, 1, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Cancer Man', 3, 1, 3200);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Grilled', 3, 1, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Bit by a Dead Bee', 4, 1, 3100);
+
+-- Series 2: Better Call Saul
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Uno', 1, 2, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Mijo', 2, 2, 3120);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Nacho', 2, 2, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Hero', 3, 2, 3180);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Rebecca', 4, 2, 3060);
+
+-- Series 3: Dexter
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Dexter', 1, 3, 3300);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Crocodile', 1, 3, 2820);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Our Father', 2, 3, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Finding Freebo', 2, 3, 2940);
+
+-- Series 4: Six Feet Under
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Six Feet Under', 1, 4, 2400);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Falling into Place', 1, 4, 2520);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Perfect Circles', 1, 4, 2700);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Twilight', 2, 4, 2640);
+
+-- Series 5: Game of Thrones
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Winter is Coming', 1, 5, 3600);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'The Kingsroad', 1, 5, 3480);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Lord Snow', 2, 5, 3300);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Cripples, Bastards, and Broken Things', 3, 5, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'The Wolf and the Lion', 4, 5, 3120);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'A Golden Crown', 5, 5, 3240);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Dragonstone', 5, 5, 3300);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Stormborn', 6, 5, 3360);
+
+-- Series 6: Chernobyl
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, '1:23:45', 1, 6, 3300);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Please Remain Calm', 1, 6, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Open Wide, O Earth', 1, 6, 3120);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'The Happiness of All Mankind', 2, 6, 3300);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Vichnaya Pamyat', 2, 6, 3240);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Memories', 2, 6, 3180);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Fading Embers', 3, 6, 3360);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'End of the Line', 4, 6, 3240);
+
+-- Series 7: Succession
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Celebration', 1, 7, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Dundee', 2, 7, 2880);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'This is Not for Tears', 3, 7, 3120);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Hostile Takeover', 3, 7, 3000);
+
+-- Series 8: Casa de Papel
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Bella Ciao', 1, 8, 2700);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Cinco minutos antes', 1, 8, 2700);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'El Professor', 1, 8, 2800);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Plan Maestro', 1, 8, 2900);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Infiltración', 2, 8, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Marea Roja', 2, 8, 3100);
+
+-- Series 9: The Last of Us
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Endure and Survive', 1, 9, 3300);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'The Smugglers', 2, 9, 3180);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'Final Chapter', 3, 9, 3000);
+INSERT INTO episodes (episode_id, title, season_id, series_id, length) VALUES (EPISODE_ID_SEQ.NEXTVAL, 'New Beginnings', 3, 9, 3100);
+ 
+	
+-- Inserting data for viewership
+
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 1, 1, 1, 1, TO_DATE('10-APR-2008', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 10, 2, 3, 1, TO_DATE('12-JUN-2009', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 8, 1, 3, 1, TO_DATE('20-JUN-2008', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 3, 2, 2, 1, TO_DATE('06-MAY-2008', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 7, 1, 4, 1, TO_DATE('02-JUN-2008', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 13, 1, 2, 9, TO_DATE('02-FEB-2023', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 9, 2, 3, 9, TO_DATE('02-APR-2023', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 5, 2, 2, 8, TO_DATE('02-SEP-2017', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 4, 1, 1, 8, TO_DATE('07-NOV-2017', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 14, 1, 2, 7, TO_DATE('02-SEP-2018', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 14, 1, 3, 7, TO_DATE('19-OCT-2018', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 14, 2, 3, 7, TO_DATE('22-OCT-2018', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 6, 1, 1, 6, TO_DATE('19-AUG-2019', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 6, 2, 2, 6, TO_DATE('24-SEP-2019', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 6, 1, 5, 5, TO_DATE('19-AUG-2014', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 6, 2, 5, 5, TO_DATE('28-AUG-2014', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 6, 1, 1, 5, TO_DATE('19-AUG-2019', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 2, 2, 1, 4, TO_DATE('21-FEB-2008', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 6, 1, 1, 4, TO_DATE('19-JAN-2008', 'DD-MON-YYYY'));
+INSERT INTO viewership VALUES (VIEWERSHIP_ID_SEQ.NEXTVAL, 2, 2, 3, 9, TO_DATE('02-APR-2023', 'DD-MON-YYYY'));
+
+
+
+
+
+
+
+

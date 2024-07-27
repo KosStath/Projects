@@ -1,0 +1,340 @@
+-- Show all data
+
+SELECT * 
+FROM table _name;
+
+
+--a) All the records from one table (e.g. casting)
+
+SELECT * 
+FROM CASTING
+
+
+--b) A projection with 3 columns in reverse alphabetical order (e.g. actors table, actors' last name reverse order)
+
+SELECT actor_id, a_lname, a_DOB
+FROM actors
+ORDER BY a_lname DESC;
+
+
+--c) Restriction queries with multiple clauses
+
+SELECT *
+FROM viewers
+WHERE v_country = 'Greece' -- from a specific country
+  AND v_city != 'Thessaloniki' -- negative condition 
+  AND v_lname LIKE 'Ch%ou' -- matching pattern
+  AND EXTRACT(YEAR FROM v_DOB) BETWEEN 1980 AND 1990; -- date range condition
+
+
+-- d) Join queries
+
+-- 2 tables
+SELECT a.a_fname, a.a_lname, s.title
+FROM actors a
+JOIN series s ON a.actor_id = s.actor_id; 
+
+-- 4 tables
+SELECT
+e.episode_id,
+e.title AS episode_title,
+a.a_fname AS actor_fname,
+a.a_lname AS actor_lname
+FROM
+episodes e
+JOIN
+series se ON e.series_id = se.series_id
+JOIN
+casting c ON e.series_id = c.series_id
+JOIN
+actors a ON c.actor_id = a.actor_id
+WHERE
+se.title = 'Breaking Bad'; 
+
+
+-- e)1) Actors whose last name starts with C and ends with E
+
+SELECT *
+FROM actors
+WHERE UPPER(a_lname) LIKE 'C%E';
+
+
+-- e)2) Total number of viewers per country
+
+SELECT
+    v_country,
+    COUNT(*) AS total_viewers
+FROM
+    viewers
+GROUP BY
+    v_country;
+
+
+-- e)3) Most viewed episodes
+
+SELECT    series_id,    season_id,    episode_id,    COUNT(*) AS view_count
+FROM    viewership
+GROUP BY   series_id, season_id, episode_id
+ORDER BY    view_count DESC
+FETCH FIRST 1 ROW ONLY;
+
+
+-- e)4) Most viewed series
+
+SELECT    v.series_id,
+    s.title AS series_title,    COUNT(*) AS view_count
+FROM    viewership v
+JOIN
+    series s ON v.series_id = s.series_id
+GROUP BY    v.series_id, s.title
+ORDER BY    view_count DESC
+FETCH FIRST 1 ROW ONLY;
+
+
+-- e)5) Actors’ first & last name, along with their id, and the series they participated in
+
+SELECT
+    a.actor_id,
+    a.a_lname AS surname,
+    a.a_fname AS name,
+    s.title AS series_participated
+FROM
+    actors a
+JOIN
+    casting c ON a.actor_id = c.actor_id
+JOIN
+    series s ON c.series_id = s.series_id
+ORDER BY
+    a.a_lname ASC, a.a_fname ASC, s.title ASC;
+
+
+-- e)6) Actors with the most participations
+
+WITH ActorParticipationRank AS (
+    SELECT
+        a.actor_id,
+        a.a_lname AS surname,
+        a.a_fname AS name,
+        COUNT(DISTINCT c.series_id) AS series_participation_count,
+        RANK() OVER (ORDER BY COUNT(DISTINCT c.series_id) DESC) AS participation_rank
+    FROM
+        actors a
+    JOIN
+        casting c ON a.actor_id = c.actor_id
+    GROUP BY
+        a.actor_id, a.a_lname, a.a_fname
+)
+SELECT
+    actor_id,
+    surname,
+    name,   series_participation_count
+FROM
+    ActorParticipationRank
+WHERE
+    participation_rank = 1;
+
+
+--e)8) Series with the most seasons
+
+SELECT
+    s.series_id,
+    s.title AS series_title,    COUNT(DISTINCT se.season_id) AS season_count
+FROM
+    series s
+JOIN
+    seasons se ON s.series_id = se.series_id
+GROUP BY
+    s.series_id, s.title
+ORDER BY
+    season_count DESC
+FETCH FIRST 1 ROW ONLY;
+
+
+--e)9) Series with the most episodes
+
+WITH SeriesEpisodeRank AS (
+    SELECT
+        s.series_id,
+        s.title AS series_title,
+        COUNT(*) AS episode_count,
+        RANK() OVER (ORDER BY COUNT(*) DESC) AS episode_rank
+    FROM
+        series s
+    JOIN
+        episodes e ON s.series_id = e.series_id
+    GROUP BY
+        s.series_id, s.title
+)
+SELECT
+    series_id,
+    series_title,
+    episode_count
+FROM   SeriesEpisodeRank
+WHERE
+    episode_rank = 1;
+
+
+-- e)10) No of Series that were produced between 2000 and 2009
+
+SELECT
+    COUNT(*) AS series_count
+FROM
+    series
+WHERE
+    EXTRACT(YEAR FROM production_date) BETWEEN 2000 AND 2009;
+
+
+-- e)11) Actors born in July
+
+SELECT
+    actor_id,
+    a_fname AS name,
+    a_lname AS surname,    TO_CHAR(a_DOB, 'DD-MON') AS birth_month
+FROM
+    actors
+WHERE    TO_CHAR(a_DOB, 'MM') = '07';
+
+
+-- e)12) Actors not participating in series
+
+SELECT
+    COUNT(DISTINCT actor_id) AS actors_without_series
+FROM
+    actors
+WHERE
+    actor_id NOT IN (SELECT DISTINCT actor_id FROM casting);
+
+
+-- e)13) Oldest female viewers
+
+SELECT
+    viewer_id,
+    v_fname AS first_name,
+    v_lname AS last_name,
+    v_DOB AS date_of_birth
+FROM
+    viewers
+WHERE
+    v_gender = 'F'
+ORDER BY
+    v_DOB ASC
+FETCH FIRST 1 ROW ONLY;
+
+
+-- e)14) Viewers who live on an address containing the word “SAINT”
+
+SELECT
+    viewer_id,
+    v_fname AS first_name,
+    v_lname AS last_name,
+    v_address AS address
+FROM
+    viewers
+WHERE    UPPER(v_address) LIKE '%SAINT%';
+
+
+-- e)15) Series in descending order based on the average of their episodes’ length
+
+SELECT
+    s.series_id,
+    s.title AS series_title,   ROUND(AVG(e.length), 2) AS average_episode_length
+FROM
+    series s
+JOIN
+    episodes e ON s.series_id = e.series_id
+GROUP BY
+    s.series_id, s.title
+ORDER BY    average_episode_length DESC;
+
+
+-- e)16) Viewer who has watched the most episodes
+
+SELECT
+    v.viewer_id,
+    v.v_fname AS first_name,
+    v.v_lname AS last_name,
+    COUNT(DISTINCT vs.series_id || '_' || vs.season_id || '_' || vs.episode_id) AS watched_episodes_count
+FROM
+    viewers v
+JOIN
+    viewership vs ON v.viewer_id = vs.viewer_id
+GROUP BY
+    v.viewer_id, v.v_fname, v.v_lname
+ORDER BY
+    watched_episodes_count DESC
+FETCH FIRST 1 ROW ONLY;
+
+
+-- e)17) Viewer in Thessaloniki who has watched the most episodes
+
+SELECT
+    v.viewer_id,
+    v.v_fname AS first_name,
+    v.v_lname AS last_name,
+    COUNT(DISTINCT vs.series_id || '_' || vs.season_id || '_' || vs.episode_id) AS watched_episodes_count
+FROM
+    viewers v
+JOIN
+    viewership vs ON v.viewer_id = vs.viewer_id
+WHERE
+    UPPER(v.v_city) = 'THESSALONIKI'
+GROUP BY
+    v.viewer_id, v.v_fname, v.v_lname
+ORDER BY    watched_episodes_count DESC
+FETCH FIRST 1 ROW ONLY;
+
+
+-- e)18) Most viewed series by gender
+
+WITH RankedSeries AS (
+    SELECT
+        v.v_gender,
+        vs.series_id,
+        s.title AS series_title,
+        COUNT(DISTINCT vs.viewer_id) AS view_count,
+        ROW_NUMBER() OVER (PARTITION BY v.v_gender ORDER BY COUNT(DISTINCT vs.viewer_id) DESC) AS rank
+    FROM
+        viewership vs
+    JOIN
+        viewers v ON vs.viewer_id = v.viewer_id
+    JOIN
+        series s ON vs.series_id = s.series_id
+    GROUP BY
+        v.v_gender,
+        vs.series_id,
+        s.title
+)
+SELECT
+    v_gender,
+    series_id,
+    series_title,
+    view_count
+FROM
+    RankedSeries
+WHERE
+    rank = 1;
+
+
+-- e)19) First 4 letters of first name added to the first 4 letter of the last name (viewers)
+
+SELECT
+    v_fname,
+    v_lname,
+    SUBSTR(v_fname, 1, 4) || SUBSTR(v_lname, 1, 4) AS username
+FROM
+    viewers;
+
+
+-- e)20) Total length of all series per production year
+
+SELECT
+    EXTRACT(YEAR FROM s.production_date) AS production_year,
+    SUM(e.length) AS total_length
+FROM
+    series s
+JOIN
+    episodes e ON s.series_id = e.series_id
+GROUP BY
+    EXTRACT(YEAR FROM s.production_date)
+ORDER BY
+    production_year;

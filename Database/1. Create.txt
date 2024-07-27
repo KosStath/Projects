@@ -1,0 +1,200 @@
+--Sequence for generating new values for actors primary key
+CREATE SEQUENCE GEN_VAL_ACTORS
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+
+
+CREATE TABLE actors (
+    actor_id NUMBER(9) DEFAULT GEN_VAL_ACTORS.NEXTVAL,
+    a_fname VARCHAR2(30) NOT NULL,
+    a_lname VARCHAR2(30) NOT NULL,
+    a_email VARCHAR2(30)NOT NULL,
+    a_country VARCHAR2(30) NOT NULL,
+    a_gender VARCHAR2(1)DEFAULT 'O' NOT NULL,
+    a_DOB DATE NOT NULL
+);
+
+
+--Sequence for generating new values for series primary key 
+CREATE SEQUENCE GEN_VAL_SERIES
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+	
+	
+CREATE TABLE series (
+    series_id NUMBER(9) DEFAULT GEN_VAL_SERIES.NEXTVAL,
+    title VARCHAR2(30)NOT NULL,
+    description VARCHAR2(255) NOT NULL,
+    actor_id NUMBER(9),
+    production_date DATE NOT NULL,
+    release_date DATE NOT NULL,
+    country_origin VARCHAR2(30) NOT NULL
+);
+
+
+CREATE TABLE casting (
+    actor_id NUMBER(9),
+    series_id NUMBER(9),
+    role VARCHAR(30) NOT NULL     
+);
+
+
+--Sequence for generating new value for season_id
+CREATE SEQUENCE SEASON_ID_SEQ 
+	START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+
+
+CREATE TABLE seasons (
+    season_id NUMBER(9) DEFAULT SEASON_ID_SEQ.NEXTVAL,
+    series_id NUMBER(9)
+);
+
+
+--Trigger for generating a new value (1) for season_id for each series 
+CREATE OR REPLACE TRIGGER season_id_trigger
+BEFORE INSERT ON seasons
+FOR EACH ROW
+DECLARE
+    v_last_season_id NUMBER(9);
+BEGIN
+    -- Get the last season_id for the current series_id
+    SELECT MAX(season_id) INTO v_last_season_id
+    FROM seasons
+    WHERE series_id = :NEW.series_id;
+
+    -- If no previous season_id exists, set it to 1; otherwise, increment by 1
+    :NEW.season_id := NVL(v_last_season_id, 0) + 1;
+END;
+/
+
+
+--Sequence for generating new value for episode_id
+CREATE SEQUENCE EPISODE_ID_SEQ 
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+
+
+CREATE TABLE episodes (
+    episode_id NUMBER(9) DEFAULT EPISODE_ID_SEQ.NEXTVAL,
+    title VARCHAR2(50) NOT NULL,
+	season_id NUMBER(9) NOT NULL,
+    series_id NUMBER(9) NOT NULL,
+    length INT NOT NULL     
+);
+
+
+-- Trigger for generating a new value (1) for episode_id for each new combination season_id, series_id    
+CREATE OR REPLACE TRIGGER episode_id_trigger
+BEFORE INSERT ON episodes
+FOR EACH ROW
+DECLARE
+    v_last_episode_id NUMBER(9);
+BEGIN
+    -- Get the last episode_id for the current combination of season_id and series_id
+    SELECT MAX(episode_id) INTO v_last_episode_id
+    FROM episodes
+    WHERE season_id = :NEW.season_id
+      AND series_id = :NEW.series_id;
+
+    -- If no previous episode_id exists, set it to 1; otherwise, increment by 1
+    :NEW.episode_id := NVL(v_last_episode_id, 0) + 1;
+END;
+/
+
+
+-- Sequence for generating new values for viewer_id
+CREATE SEQUENCE GEN_VAL_VIEWERS
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+	
+	
+CREATE TABLE viewers (
+	v_email VARCHAR2(30),
+    viewer_id NUMBER(9) DEFAULT GEN_VAL_VIEWERS.NEXTVAL,
+    v_fname VARCHAR2(30) NOT NULL,
+    v_lname VARCHAR2(30) NOT NULL,
+    v_address VARCHAR2(30) NOT NULL,
+    v_city VARCHAR2(30) NOT NULL,
+    v_country VARCHAR2(30) NOT NULL,
+    v_gender VARCHAR2(1) DEFAULT 'O',
+    v_DOB DATE NOT NULL
+);
+
+
+-- Sequence for generating new values for viewership primary key
+CREATE SEQUENCE VIEWERSHIP_ID_SEQ
+	START WITH 1
+	INCREMENT BY 1
+	NOCACHE
+	NOCYCLE;
+
+
+CREATE TABLE viewership (
+	viewership_id NUMBER(9) DEFAULT VIEWERSHIP_ID_SEQ.NEXTVAL, 
+    viewer_id NUMBER(9),
+    episode_id NUMBER(9),
+	season_id NUMBER(9),
+    series_id NUMBER(9),
+    screening_date DATE NOT NULL
+);
+
+
+--Trigger to ensure screening_date >= release_date
+CREATE OR REPLACE TRIGGER trg_check_screening_date
+BEFORE INSERT OR UPDATE ON viewership
+FOR EACH ROW
+DECLARE
+  v_release_date DATE;
+BEGIN
+  SELECT release_date INTO v_release_date
+  FROM series
+  WHERE series_id = :NEW.series_id;
+
+  IF :NEW.screening_date <= v_release_date THEN
+    RAISE_APPLICATION_ERROR(-20001, 'Screening date must be after the release date.');
+  END IF;
+END;
+/
+
+
+/*Commands
+
+--Show all tables
+
+SELECT TABLE_NAME 
+FROM ALL_TABLES 
+WHERE OWNER = 'your_username';
+
+--Describe all tables
+
+DESC ACTORS;
+DESC SERIES;
+DESC CASTING;
+DESC SEASONS;
+DESC EPISODES;
+DESC VIEWERS;
+DESC VIEWERSHIP;
+
+--Show all sequences
+
+SELECT SEQUENCE_NAME, MIN_VALUE, MAX_VALUE, INCREMENT_BY, LAST_NUMBER
+FROM ALL_SEQUENCES
+WHERE SEQUENCE_OWNER = 'your_schema';
+
+--Show all triggers
+
+SELECT TRIGGER_NAME, TABLE_NAME, TRIGGER_TYPE, TRIGGERING_EVENT
+FROM ALL_TRIGGERS
+WHERE OWNER = 'your_schema';
+*/
