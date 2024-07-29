@@ -1,0 +1,2350 @@
+@prefix : <http://example.org/bst#> .
+@prefix bst: <http://example.org/bst#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@base <http://example.org/bst#> .
+
+<http://example.org/bst> rdf:type owl:Ontology ;
+                          spin:imports <http://topbraid.org/spin/rdfsplus> ;
+                          owl:versionInfo "Created with TopBraid Composer" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://example.org/bst#Scored2Pointers
+bst:Scored2Pointers rdf:type owl:AnnotationProperty .
+
+
+###  http://spinrdf.org/spin#imports
+spin:imports rdf:type owl:AnnotationProperty .
+
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/bst#belongToPlayer
+bst:belongToPlayer rdf:type owl:ObjectProperty ;
+                   owl:inverseOf bst:hasPlayerStat ;
+                   rdfs:domain bst:Player_Stat ;
+                   rdfs:range bst:Player .
+
+
+###  http://example.org/bst#hasMember
+bst:hasMember rdf:type owl:ObjectProperty ;
+              rdfs:domain bst:Team ;
+              rdfs:range bst:TeamMember .
+
+
+###  http://example.org/bst#hasPlayerStat
+bst:hasPlayerStat rdf:type owl:ObjectProperty ;
+                  rdfs:domain bst:Player ;
+                  rdfs:range bst:Player_Stat .
+
+
+###  http://example.org/bst#playedInGame
+bst:playedInGame rdf:type owl:ObjectProperty ;
+                 rdfs:domain bst:Player_Stat ;
+                 rdfs:range bst:Game .
+
+
+###  http://example.org/bst#playsGame
+bst:playsGame rdf:type owl:ObjectProperty ;
+              rdfs:domain bst:Team ;
+              rdfs:range bst:Game .
+
+
+###  http://example.org/bst#starter
+bst:starter rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf bst:playedInGame ;
+            rdfs:domain bst:Player .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/bst#assists
+bst:assists rdf:type owl:DatatypeProperty ;
+            rdfs:domain bst:Player_Stat ;
+            rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#defensiveRebs
+bst:defensiveRebs rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf bst:rebounds ;
+                  rdfs:domain bst:Player_Stat ;
+                  rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#dob
+bst:dob rdf:type owl:DatatypeProperty ;
+        rdfs:domain bst:TeamMember ;
+        rdfs:range xsd:date .
+
+
+###  http://example.org/bst#fouls
+bst:fouls rdf:type owl:DatatypeProperty ;
+          rdfs:domain bst:Player_Stat ;
+          rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#game_date
+bst:game_date rdf:type owl:DatatypeProperty ;
+              rdfs:domain bst:Game ;
+              rdfs:range xsd:date .
+
+
+###  http://example.org/bst#game_result
+bst:game_result rdf:type owl:DatatypeProperty ;
+                rdfs:domain bst:Game ;
+                rdfs:range xsd:string .
+
+
+###  http://example.org/bst#getsBonus
+bst:getsBonus rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain bst:Player ;
+              rdfs:range xsd:string .
+
+
+###  http://example.org/bst#hasAttendance
+bst:hasAttendance rdf:type owl:DatatypeProperty ;
+                  rdfs:domain bst:Game ;
+                  rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#height
+bst:height rdf:type owl:DatatypeProperty ;
+           rdfs:domain bst:Player ;
+           rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#home_away
+bst:home_away rdf:type owl:DatatypeProperty ;
+              rdfs:domain bst:Game ;
+              rdfs:range xsd:string .
+
+
+###  http://example.org/bst#minutes_played
+bst:minutes_played rdf:type owl:DatatypeProperty ;
+                   rdfs:domain bst:Player_Stat ;
+                   rdfs:range xsd:decimal .
+
+
+###  http://example.org/bst#name
+bst:name rdf:type owl:DatatypeProperty ;
+         rdfs:domain bst:TeamMember ;
+         rdfs:range xsd:string .
+
+
+###  http://example.org/bst#offensiveRebs
+bst:offensiveRebs rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf bst:rebounds ;
+                  rdfs:domain bst:Player_Stat ;
+                  rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#opponent
+bst:opponent rdf:type owl:DatatypeProperty ;
+             rdfs:domain bst:Game ;
+             rdfs:range xsd:string .
+
+
+###  http://example.org/bst#points
+bst:points rdf:type owl:DatatypeProperty ;
+           rdfs:domain bst:Player_Stat ;
+           rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#position
+bst:position rdf:type owl:DatatypeProperty ;
+             rdfs:domain bst:TeamMember ;
+             rdfs:range xsd:string .
+
+
+###  http://example.org/bst#rebounds
+bst:rebounds rdf:type owl:DatatypeProperty ;
+             rdfs:domain bst:Player_Stat ;
+             rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#scored2Pointers
+bst:scored2Pointers rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf bst:points ;
+                    rdfs:domain bst:Player_Stat ;
+                    rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#scored3Pointers
+bst:scored3Pointers rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf bst:points ;
+                    rdfs:domain bst:Player_Stat ;
+                    rdfs:range xsd:integer .
+
+
+###  http://example.org/bst#starter
+bst:starter rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:string .
+
+
+###  http://example.org/bst#total2PointersPoints
+bst:total2PointersPoints rdf:type owl:DatatypeProperty .
+
+
+###  http://example.org/bst#total3PointersPoints
+bst:total3PointersPoints rdf:type owl:DatatypeProperty .
+
+
+###  http://example.org/bst#yearsWithTeam
+bst:yearsWithTeam rdf:type owl:DatatypeProperty ;
+                  rdfs:domain bst:Player ;
+                  rdfs:range xsd:int .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/bst#AssistingStaff
+bst:AssistingStaff rdf:type owl:Class ;
+                   rdfs:subClassOf bst:Staff .
+
+
+###  http://example.org/bst#CoachingStaff
+bst:CoachingStaff rdf:type owl:Class ;
+                  rdfs:subClassOf bst:Staff .
+
+
+###  http://example.org/bst#Domestic
+bst:Domestic rdf:type owl:Class ;
+             rdfs:subClassOf bst:Game .
+
+
+###  http://example.org/bst#European
+bst:European rdf:type owl:Class ;
+             rdfs:subClassOf bst:Game .
+
+
+###  http://example.org/bst#Game
+bst:Game rdf:type owl:Class .
+
+
+###  http://example.org/bst#HealthcareStaff
+bst:HealthcareStaff rdf:type owl:Class ;
+                    rdfs:subClassOf bst:AssistingStaff .
+
+
+###  http://example.org/bst#Player
+bst:Player rdf:type owl:Class ;
+           rdfs:subClassOf bst:TeamMember ;
+           owl:disjointWith bst:Staff .
+
+
+###  http://example.org/bst#Player_Stat
+bst:Player_Stat rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty bst:starter ;
+                                      owl:allValuesFrom bst:Player
+                                    ] .
+
+
+###  http://example.org/bst#PossibleCaptain
+bst:PossibleCaptain rdf:type owl:Class ;
+                    rdfs:subClassOf bst:Player .
+
+
+###  http://example.org/bst#Staff
+bst:Staff rdf:type owl:Class ;
+          rdfs:subClassOf bst:TeamMember .
+
+
+###  http://example.org/bst#SupportStaff
+bst:SupportStaff rdf:type owl:Class ;
+                 rdfs:subClassOf bst:AssistingStaff .
+
+
+###  http://example.org/bst#Team
+bst:Team rdf:type owl:Class .
+
+
+###  http://example.org/bst#TeamMember
+bst:TeamMember rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.org/bst#CoachingStaff_1
+bst:CoachingStaff_1 rdf:type owl:NamedIndividual ,
+                             bst:CoachingStaff ;
+                    bst:dob "1975-08-23"^^xsd:date ;
+                    bst:name "Peter Gold" ;
+                    bst:position "Head Coach" .
+
+
+###  http://example.org/bst#CoachingStaff_2
+bst:CoachingStaff_2 rdf:type owl:NamedIndividual ,
+                             bst:CoachingStaff ;
+                    bst:dob "1974-01-17"^^xsd:date ;
+                    bst:name "James O'Connor" ;
+                    bst:position "Assistant Coach" .
+
+
+###  http://example.org/bst#CoachingStaff_3
+bst:CoachingStaff_3 rdf:type owl:NamedIndividual ,
+                             bst:CoachingStaff ;
+                    bst:dob "1971-05-16"^^xsd:date ;
+                    bst:name "Mikhail Ivanov" ;
+                    bst:position "Technical Coach" .
+
+
+###  http://example.org/bst#CoachingStaff_4
+bst:CoachingStaff_4 rdf:type owl:NamedIndividual ,
+                             bst:CoachingStaff ;
+                    bst:dob "1980-01-12"^^xsd:date ;
+                    bst:name "Darius Williams" ;
+                    bst:position "Fitness Coach" .
+
+
+###  http://example.org/bst#Game_1
+bst:Game_1 rdf:type owl:NamedIndividual ,
+                    bst:Domestic ;
+           bst:game_date "2023-10-01"^^xsd:date ;
+           bst:game_result "68:81" ;
+           bst:hasAttendance 7515 ;
+           bst:home_away "away" ;
+           bst:opponent "Team_1" .
+
+
+###  http://example.org/bst#Game_10
+bst:Game_10 rdf:type owl:NamedIndividual ,
+                     bst:Domestic ;
+            bst:game_date "2023-12-03"^^xsd:date ;
+            bst:game_result "94:70" ;
+            bst:hasAttendance 5326 ;
+            bst:home_away "home" ;
+            bst:opponent "Team_10" .
+
+
+###  http://example.org/bst#Game_2
+bst:Game_2 rdf:type owl:NamedIndividual ,
+                    bst:Domestic ;
+           bst:game_date "2023-10-07"^^xsd:date ;
+           bst:game_result "83:69" ;
+           bst:hasAttendance 6984 ;
+           bst:home_away "home" ;
+           bst:opponent "Team_2" .
+
+
+###  http://example.org/bst#Game_3
+bst:Game_3 rdf:type owl:NamedIndividual ,
+                    bst:Domestic ;
+           bst:game_date "2023-10-18"^^xsd:date ;
+           bst:game_result "75:77" ;
+           bst:hasAttendance 5849 ;
+           bst:home_away "home" ;
+           bst:opponent "Team_3" .
+
+
+###  http://example.org/bst#Game_4
+bst:Game_4 rdf:type owl:NamedIndividual ,
+                    bst:Domestic ;
+           bst:game_date "2023-10-24"^^xsd:date ;
+           bst:game_result "71:84" ;
+           bst:hasAttendance 6398 ;
+           bst:home_away "away" ;
+           bst:opponent "Team_4" .
+
+
+###  http://example.org/bst#Game_5
+bst:Game_5 rdf:type owl:NamedIndividual ,
+                    bst:Domestic ;
+           bst:game_date "2023-10-30"^^xsd:date ;
+           bst:game_result "87:69" ;
+           bst:hasAttendance 8945 ;
+           bst:home_away "home" ;
+           bst:opponent "Team_5" .
+
+
+###  http://example.org/bst#Game_6
+bst:Game_6 rdf:type owl:NamedIndividual ,
+                    bst:European ;
+           bst:game_date "2023-11-05"^^xsd:date ;
+           bst:game_result "80:71" ;
+           bst:hasAttendance 7485 ;
+           bst:home_away "away" ;
+           bst:opponent "Team_6" .
+
+
+###  http://example.org/bst#Game_7
+bst:Game_7 rdf:type owl:NamedIndividual ,
+                    bst:Domestic ;
+           bst:game_date "2023-11-11"^^xsd:date ;
+           bst:game_result "77:69" ;
+           bst:hasAttendance 7159 ;
+           bst:home_away "away" ;
+           bst:opponent "Team_7" .
+
+
+###  http://example.org/bst#Game_8
+bst:Game_8 rdf:type owl:NamedIndividual ,
+                    bst:European ;
+           bst:game_date "2023-11-19"^^xsd:date ;
+           bst:game_result "85:62" ;
+           bst:hasAttendance 6549 ;
+           bst:home_away "home" ;
+           bst:opponent "Team_8" .
+
+
+###  http://example.org/bst#Game_9
+bst:Game_9 rdf:type owl:NamedIndividual ,
+                    bst:Domestic ;
+           bst:game_date "2023-11-25"^^xsd:date ;
+           bst:game_result "71:81" ;
+           bst:hasAttendance 6233 ;
+           bst:home_away "away" ;
+           bst:opponent "Team_9" .
+
+
+###  http://example.org/bst#HealthcareStaff_1
+bst:HealthcareStaff_1 rdf:type owl:NamedIndividual ,
+                               bst:HealthcareStaff ;
+                      bst:dob "1982-01-12"^^xsd:date ;
+                      bst:name "John Doe" ;
+                      bst:position "Physiotherapist" .
+
+
+###  http://example.org/bst#HealthcareStaff_2
+bst:HealthcareStaff_2 rdf:type owl:NamedIndividual ,
+                               bst:HealthcareStaff ;
+                      bst:dob "1984-02-14"^^xsd:date ;
+                      bst:name "Samantha Johnson" ;
+                      bst:position "Physiotherapist" .
+
+
+###  http://example.org/bst#HealthcareStaff_3
+bst:HealthcareStaff_3 rdf:type owl:NamedIndividual ,
+                               bst:HealthcareStaff ;
+                      bst:dob "1979-04-25"^^xsd:date ;
+                      bst:name "Sophie Dubois" ;
+                      bst:position "Nutritionist" .
+
+
+###  http://example.org/bst#Player_1
+bst:Player_1 rdf:type owl:NamedIndividual ,
+                      bst:Player ;
+             bst:dob "1995-02-15"^^xsd:date ;
+             bst:height 201 ;
+             bst:name "John Smith" ;
+             bst:position "Forward" ;
+             bst:yearsWithTeam 4 .
+
+
+###  http://example.org/bst#Player_10
+bst:Player_10 rdf:type owl:NamedIndividual ,
+                       bst:Player ;
+              bst:dob "1996-12-02"^^xsd:date ;
+              bst:height 193 ;
+              bst:name "Étienne Lefevre" ;
+              bst:position "Point Guard" ;
+              bst:yearsWithTeam 2 .
+
+
+###  http://example.org/bst#Player_10_Game_1
+bst:Player_10_Game_1 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_10 ;
+                     bst:playedInGame bst:Game_1 ;
+                     bst:assists 2 ;
+                     bst:defensiveRebs 1 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 14.51 ;
+                     bst:points 9 ;
+                     bst:rebounds 1 ;
+                     bst:scored3Pointers 3 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_10_Game_10
+bst:Player_10_Game_10 rdf:type owl:NamedIndividual ,
+                               bst:Player_Stat ;
+                      bst:belongToPlayer bst:Player_10 ;
+                      bst:playedInGame bst:Game_10 ;
+                      bst:assists 2 ;
+                      bst:defensiveRebs 1 ;
+                      bst:fouls 3 ;
+                      bst:minutes_played 16.32 ;
+                      bst:offensiveRebs 1 ;
+                      bst:points 10 ;
+                      bst:rebounds 2 ;
+                      bst:scored2Pointers 2 ;
+                      bst:scored3Pointers 2 ;
+                      bst:starter "no" .
+
+
+###  http://example.org/bst#Player_10_Game_2
+bst:Player_10_Game_2 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_10 ;
+                     bst:playedInGame bst:Game_2 ;
+                     bst:assists 3 ;
+                     bst:defensiveRebs 1 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 16.49 ;
+                     bst:points 8 ;
+                     bst:rebounds 1 ;
+                     bst:scored2Pointers 1 ;
+                     bst:scored3Pointers 2 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_10_Game_3
+bst:Player_10_Game_3 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_10 ;
+                     bst:playedInGame bst:Game_3 ;
+                     bst:assists 1 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 12.29 ;
+                     bst:points 6 ;
+                     bst:rebounds 0 ;
+                     bst:scored3Pointers 2 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_10_Game_5
+bst:Player_10_Game_5 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_10 ;
+                     bst:playedInGame bst:Game_5 ;
+                     bst:assists 2 ;
+                     bst:defensiveRebs 2 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 11.58 ;
+                     bst:points 7 ;
+                     bst:rebounds 2 ;
+                     bst:scored2Pointers 2 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_10_Game_6
+bst:Player_10_Game_6 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_10 ;
+                     bst:playedInGame bst:Game_6 ;
+                     bst:assists 3 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 13.55 ;
+                     bst:offensiveRebs 1 ;
+                     bst:points 7 ;
+                     bst:rebounds 1 ;
+                     bst:scored2Pointers 2 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_10_Game_7
+bst:Player_10_Game_7 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_10 ;
+                     bst:playedInGame bst:Game_7 ;
+                     bst:assists 3 ;
+                     bst:fouls 3 ;
+                     bst:minutes_played 15.11 ;
+                     bst:offensiveRebs 1 ;
+                     bst:points 8 ;
+                     bst:rebounds 1 ;
+                     bst:scored2Pointers 1 ;
+                     bst:scored3Pointers 2 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_10_Game_9
+bst:Player_10_Game_9 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_10 ;
+                     bst:playedInGame bst:Game_9 ;
+                     bst:assists 1 ;
+                     bst:fouls 1 ;
+                     bst:minutes_played 9.44 ;
+                     bst:points 5 ;
+                     bst:rebounds 0 ;
+                     bst:scored2Pointers 1 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_11
+bst:Player_11 rdf:type owl:NamedIndividual ,
+                       bst:Player ;
+              bst:dob "1997-10-22"^^xsd:date ;
+              bst:height 196 ;
+              bst:name "Kwame Adebayo" ;
+              bst:position "Shooting Guard" ;
+              bst:yearsWithTeam 3 .
+
+
+###  http://example.org/bst#Player_11_Game_1
+bst:Player_11_Game_1 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_11 ;
+                     bst:playedInGame bst:Game_1 ;
+                     bst:assists 1 ;
+                     bst:defensiveRebs 1 ;
+                     bst:fouls 1 ;
+                     bst:minutes_played 10.10 ;
+                     bst:offensiveRebs 1 ;
+                     bst:points 4 ;
+                     bst:rebounds 2 ;
+                     bst:scored2Pointers 2 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_11_Game_10
+bst:Player_11_Game_10 rdf:type owl:NamedIndividual ,
+                               bst:Player_Stat ;
+                      bst:belongToPlayer bst:Player_10 ;
+                      bst:playedInGame bst:Game_10 ;
+                      bst:assists 2 ;
+                      bst:defensiveRebs 2 ;
+                      bst:fouls 2 ;
+                      bst:minutes_played 10.42 ;
+                      bst:points 6 ;
+                      bst:rebounds 2 ;
+                      bst:scored3Pointers 2 ;
+                      bst:starter "no" .
+
+
+###  http://example.org/bst#Player_11_Game_2
+bst:Player_11_Game_2 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_11 ;
+                     bst:playedInGame bst:Game_2 ;
+                     bst:assists 2 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 7.51 ;
+                     bst:points 3 ;
+                     bst:rebounds 0 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_11_Game_4
+bst:Player_11_Game_4 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_11 ;
+                     bst:playedInGame bst:Game_4 ;
+                     bst:assists 0 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 9.11 ;
+                     bst:points 5 ;
+                     bst:rebounds 0 ;
+                     bst:scored2Pointers 1 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_11_Game_6
+bst:Player_11_Game_6 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_11 ;
+                     bst:playedInGame bst:Game_6 ;
+                     bst:assists 2 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 9.33 ;
+                     bst:points 5 ;
+                     bst:rebounds 0 ;
+                     bst:scored2Pointers 1 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_11_Game_7
+bst:Player_11_Game_7 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_11 ;
+                     bst:playedInGame bst:Game_7 ;
+                     bst:assists 2 ;
+                     bst:fouls 0 ;
+                     bst:minutes_played 6.44 ;
+                     bst:offensiveRebs 1 ;
+                     bst:points 3 ;
+                     bst:rebounds 1 ;
+                     bst:scored3Pointers 1 .
+
+
+###  http://example.org/bst#Player_11_Game_8
+bst:Player_11_Game_8 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_11 ;
+                     bst:playedInGame bst:Game_8 ;
+                     bst:assists 1 ;
+                     bst:defensiveRebs 1 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 7.22 ;
+                     bst:points 3 ;
+                     bst:rebounds 1 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_12
+bst:Player_12 rdf:type owl:NamedIndividual ,
+                       bst:Player ;
+              bst:dob "1994-11-11"^^xsd:date ;
+              bst:height 204 ;
+              bst:name "Pedro Santos" ;
+              bst:position "Forward" ;
+              bst:yearsWithTeam 2 .
+
+
+###  http://example.org/bst#Player_12_Game_3
+bst:Player_12_Game_3 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_12 ;
+                     bst:playedInGame bst:Game_3 ;
+                     bst:assists 0 ;
+                     bst:defensiveRebs 1 ;
+                     bst:fouls 1 ;
+                     bst:minutes_played 6.55 ;
+                     bst:offensiveRebs 1 ;
+                     bst:points 2 ;
+                     bst:rebounds 2 ;
+                     bst:scored2Pointers 1 ;
+                     bst:starter "no" ;
+                     bst:Scored2Pointers "1" .
+
+
+###  http://example.org/bst#Player_12_Game_4
+bst:Player_12_Game_4 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_12 ;
+                     bst:playedInGame bst:Game_4 ;
+                     bst:assists 1 ;
+                     bst:defensiveRebs 1 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 8.33 ;
+                     bst:offensiveRebs 1 ;
+                     bst:points 4 ;
+                     bst:rebounds 2 ;
+                     bst:scored2Pointers 2 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_12_Game_6
+bst:Player_12_Game_6 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_12 ;
+                     bst:playedInGame bst:Game_6 ;
+                     bst:assists 1 ;
+                     bst:defensiveRebs 2 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 8.44 ;
+                     bst:points 4 ;
+                     bst:rebounds 2 ;
+                     bst:scored2Pointers 2 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_12_Game_7
+bst:Player_12_Game_7 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_12 ;
+                     bst:playedInGame bst:Game_7 ;
+                     bst:assists 0 ;
+                     bst:fouls 1 ;
+                     bst:minutes_played 5.22 ;
+                     bst:offensiveRebs 2 ;
+                     bst:points 2 ;
+                     bst:rebounds 2 ;
+                     bst:scored2Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_12_Game_9
+bst:Player_12_Game_9 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_12 ;
+                     bst:playedInGame bst:Game_9 ;
+                     bst:assists 1 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 6.45 ;
+                     bst:points 2 ;
+                     bst:rebounds 0 ;
+                     bst:scored2Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_13
+bst:Player_13 rdf:type owl:NamedIndividual ,
+                       bst:TeamMember ;
+              bst:hasPlayerStat bst:Player_13_Game_4 .
+
+
+###  http://example.org/bst#Player_13_Game_4
+bst:Player_13_Game_4 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat .
+
+
+###  http://example.org/bst#Player_14
+bst:Player_14 rdf:type owl:NamedIndividual ,
+                       bst:TeamMember ;
+              bst:starter bst:Game_5 .
+
+
+###  http://example.org/bst#Player_1_Game_1
+bst:Player_1_Game_1 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_1 ;
+                    bst:playedInGame bst:Game_1 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 4 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 13.56 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 6 ;
+                    bst:rebounds 5 ;
+                    bst:scored2Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_1_Game_10
+bst:Player_1_Game_10 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_1 ;
+                     bst:playedInGame bst:Game_10 ;
+                     bst:assists 4 ;
+                     bst:defensiveRebs 2 ;
+                     bst:fouls 4 ;
+                     bst:minutes_played 19.13 ;
+                     bst:points 9 ;
+                     bst:rebounds 2 ;
+                     bst:scored2Pointers 3 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_1_Game_2
+bst:Player_1_Game_2 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_1 ;
+                    bst:playedInGame bst:Game_2 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 4 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 19.23 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 7 ;
+                    bst:rebounds 6 ;
+                    bst:scored2Pointers 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_1_Game_3
+bst:Player_1_Game_3 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_1 ;
+                    bst:playedInGame bst:Game_3 ;
+                    bst:assists 5 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 22.35 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 8 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 1 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_1_Game_4
+bst:Player_1_Game_4 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_1 ;
+                    bst:playedInGame bst:Game_4 ;
+                    bst:assists 5 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 20.55 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 7 ;
+                    bst:rebounds 5 ;
+                    bst:scored2Pointers 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_1_Game_5
+bst:Player_1_Game_5 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_1 ;
+                    bst:playedInGame bst:Game_5 ;
+                    bst:assists 6 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 17.39 ;
+                    bst:offensiveRebs 3 ;
+                    bst:points 9 ;
+                    bst:rebounds 6 ;
+                    bst:scored2Pointers 3 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_1_Game_6
+bst:Player_1_Game_6 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_1 ;
+                    bst:playedInGame bst:Game_6 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 1 ;
+                    bst:minutes_played 13.44 ;
+                    bst:points 5 ;
+                    bst:rebounds 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_1_Game_7
+bst:Player_1_Game_7 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_1 ;
+                    bst:playedInGame bst:Game_7 ;
+                    bst:assists 7 ;
+                    bst:defensiveRebs 4 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 25.55 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 12 ;
+                    bst:rebounds 6 ;
+                    bst:scored2Pointers 3 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_1_Game_8
+bst:Player_1_Game_8 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_1 ;
+                    bst:playedInGame bst:Game_8 ;
+                    bst:assists 5 ;
+                    bst:defensiveRebs 5 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 21.22 ;
+                    bst:points 8 ;
+                    bst:rebounds 5 ;
+                    bst:scored2Pointers 1 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_1_Game_9
+bst:Player_1_Game_9 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_1 ;
+                    bst:playedInGame bst:Game_9 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 26.32 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 7 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2
+bst:Player_2 rdf:type owl:NamedIndividual ,
+                      bst:Player ;
+             bst:dob "1989-02-05"^^xsd:date ;
+             bst:height 189 ;
+             bst:name "Alejandro García" ;
+             bst:position "Point Guard" ;
+             bst:yearsWithTeam 5 .
+
+
+###  http://example.org/bst#Player_2_Game_1
+bst:Player_2_Game_1 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_2 ;
+                    bst:playedInGame bst:Game_1 ;
+                    bst:assists 4 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 22.34 ;
+                    bst:points 10 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 2 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2_Game_10
+bst:Player_2_Game_10 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_2 ;
+                     bst:playedInGame bst:Game_10 ;
+                     bst:assists 3 ;
+                     bst:defensiveRebs 1 ;
+                     bst:fouls 2 ;
+                     bst:minutes_played 17.42 ;
+                     bst:points 11 ;
+                     bst:rebounds 1 ;
+                     bst:scored2Pointers 1 ;
+                     bst:scored3Pointers 3 ;
+                     bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2_Game_2
+bst:Player_2_Game_2 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_2 ;
+                    bst:playedInGame bst:Game_2 ;
+                    bst:assists 3 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 23.56 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 9 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 3 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2_Game_3
+bst:Player_2_Game_3 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_2 ;
+                    bst:playedInGame bst:Game_3 ;
+                    bst:assists 4 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 18.32 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 7 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2_Game_4
+bst:Player_2_Game_4 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_2 ;
+                    bst:playedInGame bst:Game_4 ;
+                    bst:assists 5 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 26.44 ;
+                    bst:points 12 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 3 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2_Game_5
+bst:Player_2_Game_5 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_2 ;
+                    bst:playedInGame bst:Game_5 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 24.21 ;
+                    bst:points 6 ;
+                    bst:rebounds 2 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2_Game_6
+bst:Player_2_Game_6 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_2 ;
+                    bst:playedInGame bst:Game_6 ;
+                    bst:assists 5 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 28.54 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 13 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 2 ;
+                    bst:scored3Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2_Game_7
+bst:Player_2_Game_7 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_2 ;
+                    bst:playedInGame bst:Game_7 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 1 ;
+                    bst:minutes_played 19.56 ;
+                    bst:points 8 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 1 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2_Game_8
+bst:Player_2_Game_8 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_2 ;
+                    bst:playedInGame bst:Game_8 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 16.31 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 9 ;
+                    bst:rebounds 2 ;
+                    bst:scored3Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_2_Game_9
+bst:Player_2_Game_9 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_2 ;
+                    bst:playedInGame bst:Game_9 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 11.17 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 6 ;
+                    bst:rebounds 4 ;
+                    bst:scored2Pointers 3 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_3
+bst:Player_3 rdf:type owl:NamedIndividual ,
+                      bst:Player ;
+             bst:dob "1995-05-23"^^xsd:date ;
+             bst:height 213 ;
+             bst:name "Lucas Silva" ;
+             bst:position "Center" ;
+             bst:yearsWithTeam 4 .
+
+
+###  http://example.org/bst#Player_3_Game_1
+bst:Player_3_Game_1 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_3 ;
+                    bst:playedInGame bst:Game_1 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 4 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 17.19 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 8 ;
+                    bst:rebounds 5 ;
+                    bst:scored2Pointers 4 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_3_Game_10
+bst:Player_3_Game_10 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_3 ;
+                     bst:playedInGame bst:Game_10 ;
+                     bst:assists 2 ;
+                     bst:defensiveRebs 3 ;
+                     bst:fouls 4 ;
+                     bst:minutes_played 16.43 ;
+                     bst:offensiveRebs 1 ;
+                     bst:points 7 ;
+                     bst:rebounds 4 ;
+                     bst:scored2Pointers 2 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_3_Game_2
+bst:Player_3_Game_2 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_3 ;
+                    bst:playedInGame bst:Game_2 ;
+                    bst:assists 0 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 14.18 ;
+                    bst:points 6 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 3 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_3_Game_3
+bst:Player_3_Game_3 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_3 ;
+                    bst:playedInGame bst:Game_3 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 14.45 ;
+                    bst:points 6 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 3 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_3_Game_4
+bst:Player_3_Game_4 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_3 ;
+                    bst:playedInGame bst:Game_4 ;
+                    bst:assists 0 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 12.42 ;
+                    bst:points 4 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 2 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_3_Game_5
+bst:Player_3_Game_5 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_3 ;
+                    bst:playedInGame bst:Game_5 ;
+                    bst:assists 0 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 11.18 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 5 ;
+                    bst:rebounds 5 ;
+                    bst:scored2Pointers 1 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_3_Game_7
+bst:Player_3_Game_7 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_3 ;
+                    bst:playedInGame bst:Game_7 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 4 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 10.53 ;
+                    bst:points 3 ;
+                    bst:rebounds 4 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_3_Game_8
+bst:Player_3_Game_8 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_3 ;
+                    bst:playedInGame bst:Game_8 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 14.21 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 5 ;
+                    bst:rebounds 4 ;
+                    bst:scored2Pointers 1 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_3_Game_9
+bst:Player_3_Game_9 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_3 ;
+                    bst:playedInGame bst:Game_9 ;
+                    bst:assists 0 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 9.52 ;
+                    bst:points 4 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 2 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_3_game_6
+bst:Player_3_game_6 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_3 ;
+                    bst:playedInGame bst:Game_6 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 14.32 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 7 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_4
+bst:Player_4 rdf:type owl:NamedIndividual ,
+                      bst:Player ;
+             bst:dob "1993-01-23"^^xsd:date ;
+             bst:height 202 ;
+             bst:name "Elif Yılmaz" ;
+             bst:position "Forward" ;
+             bst:yearsWithTeam 3 .
+
+
+###  http://example.org/bst#Player_4_Game_1
+bst:Player_4_Game_1 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_4 ;
+                    bst:playedInGame bst:Game_1 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 16.36 ;
+                    bst:points 8 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 1 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_4_Game_10
+bst:Player_4_Game_10 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_4 ;
+                     bst:playedInGame bst:Game_10 ;
+                     bst:assists 1 ;
+                     bst:defensiveRebs 1 ;
+                     bst:fouls 1 ;
+                     bst:minutes_played 8.41 ;
+                     bst:points 3 ;
+                     bst:rebounds 1 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_4_Game_2
+bst:Player_4_Game_2 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_4 ;
+                    bst:playedInGame bst:Game_2 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 15.52 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 5 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 1 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_4_Game_3
+bst:Player_4_Game_3 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_4 ;
+                    bst:playedInGame bst:Game_3 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 18.45 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 9 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 3 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_4_Game_5
+bst:Player_4_Game_5 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_4 ;
+                    bst:playedInGame bst:Game_5 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 9.54 ;
+                    bst:points 4 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 2 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_4_Game_6
+bst:Player_4_Game_6 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_4 ;
+                    bst:playedInGame bst:Game_6 ;
+                    bst:assists 0 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 12.12 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 5 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 1 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_4_Game_7
+bst:Player_4_Game_7 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_4 ;
+                    bst:playedInGame bst:Game_7 ;
+                    bst:assists 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 13.56 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 6 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_4_Game_8
+bst:Player_4_Game_8 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_4 ;
+                    bst:playedInGame bst:Game_8 ;
+                    bst:assists 0 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 8.34 ;
+                    bst:points 4 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 2 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_4_Game_9
+bst:Player_4_Game_9 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_4 ;
+                    bst:playedInGame bst:Game_9 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 18.37 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 9 ;
+                    bst:rebounds 4 ;
+                    bst:scored2Pointers 3 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_5
+bst:Player_5 rdf:type owl:NamedIndividual ,
+                      bst:Player ;
+             bst:dob "1996-09-07"^^xsd:date ;
+             bst:height 191 ;
+             bst:name "Ivan Petrov" ;
+             bst:position "Point Guard" ;
+             bst:yearsWithTeam 2 .
+
+
+###  http://example.org/bst#Player_5_Game_1
+bst:Player_5_Game_1 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_5 ;
+                    bst:playedInGame bst:Game_1 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 12.29 ;
+                    bst:points 7 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_5_Game_10
+bst:Player_5_Game_10 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_5 ;
+                     bst:playedInGame bst:Game_10 ;
+                     bst:assists 4 ;
+                     bst:defensiveRebs 2 ;
+                     bst:fouls 3 ;
+                     bst:minutes_played 17.52 ;
+                     bst:points 8 ;
+                     bst:rebounds 2 ;
+                     bst:scored2Pointers 1 ;
+                     bst:scored3Pointers 2 ;
+                     bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_5_Game_2
+bst:Player_5_Game_2 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_5 ;
+                    bst:playedInGame bst:Game_2 ;
+                    bst:assists 4 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 14.37 ;
+                    bst:points 6 ;
+                    bst:rebounds 2 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_5_Game_3
+bst:Player_5_Game_3 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_5 ;
+                    bst:playedInGame bst:Game_3 ;
+                    bst:assists 4 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 15.49 ;
+                    bst:points 9 ;
+                    bst:rebounds 1 ;
+                    bst:scored3Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_5_Game_4
+bst:Player_5_Game_4 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_5 ;
+                    bst:playedInGame bst:Game_4 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 1 ;
+                    bst:minutes_played 11.19 ;
+                    bst:points 7 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_5_Game_5
+bst:Player_5_Game_5 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_5 ;
+                    bst:playedInGame bst:Game_5 ;
+                    bst:assists 5 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 18.43 ;
+                    bst:points 8 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 1 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_5_Game_7
+bst:Player_5_Game_7 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_5 ;
+                    bst:playedInGame bst:Game_7 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 8.46 ;
+                    bst:points 4 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 2 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_5_Game_8
+bst:Player_5_Game_8 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_5 ;
+                    bst:playedInGame bst:Game_8 ;
+                    bst:assists 4 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 16.58 ;
+                    bst:points 9 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 3 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_5_Game_9
+bst:Player_5_Game_9 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_5 ;
+                    bst:playedInGame bst:Game_9 ;
+                    bst:assists 3 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 14 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 6 ;
+                    bst:rebounds 1 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6
+bst:Player_6 rdf:type owl:NamedIndividual ,
+                      bst:Player ;
+             bst:dob "1990-08-12"^^xsd:date ;
+             bst:height 194 ;
+             bst:name "Emilio Santoro" ;
+             bst:position "Shooting Guard" ;
+             bst:yearsWithTeam 4 .
+
+
+###  http://example.org/bst#Player_6_Game_1
+bst:Player_6_Game_1 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_6 ;
+                    bst:playedInGame bst:Game_1 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 24.29 ;
+                    bst:points 15 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 3 ;
+                    bst:scored3Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6_Game_10
+bst:Player_6_Game_10 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_6 ;
+                     bst:playedInGame bst:Game_10 ;
+                     bst:assists 2 ;
+                     bst:defensiveRebs 1 ;
+                     bst:fouls 3 ;
+                     bst:minutes_played 23.59 ;
+                     bst:points 18 ;
+                     bst:rebounds 1 ;
+                     bst:scored2Pointers 3 ;
+                     bst:scored3Pointers 4 ;
+                     bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6_Game_2
+bst:Player_6_Game_2 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_6 ;
+                    bst:playedInGame bst:Game_2 ;
+                    bst:assists 2 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 26.51 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 19 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 5 ;
+                    bst:scored3Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6_Game_3
+bst:Player_6_Game_3 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_6 ;
+                    bst:playedInGame bst:Game_3 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 25.32 ;
+                    bst:points 17 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 4 ;
+                    bst:scored3Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6_Game_4
+bst:Player_6_Game_4 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_6 ;
+                    bst:playedInGame bst:Game_4 ;
+                    bst:assists 0 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 27.43 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 22 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 5 ;
+                    bst:scored3Pointers 4 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6_Game_5
+bst:Player_6_Game_5 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_6 ;
+                    bst:playedInGame bst:Game_5 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 28.56 ;
+                    bst:points 25 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 8 ;
+                    bst:scored3Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6_Game_6
+bst:Player_6_Game_6 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_6 ;
+                    bst:playedInGame bst:Game_6 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 21.39 ;
+                    bst:points 15 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 3 ;
+                    bst:scored3Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6_Game_7
+bst:Player_6_Game_7 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_6 ;
+                    bst:playedInGame bst:Game_7 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 26.39 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 20 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 4 ;
+                    bst:scored3Pointers 4 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6_Game_8
+bst:Player_6_Game_8 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_6 ;
+                    bst:playedInGame bst:Game_8 ;
+                    bst:assists 1 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 24 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 19 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 5 ;
+                    bst:scored3Pointers 3 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_6_Game_9
+bst:Player_6_Game_9 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_6 ;
+                    bst:playedInGame bst:Game_9 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 29.24 ;
+                    bst:points 26 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 4 ;
+                    bst:scored3Pointers 6 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_7
+bst:Player_7 rdf:type owl:NamedIndividual ,
+                      bst:Player ;
+             bst:dob "1987-11-26"^^xsd:date ;
+             bst:height 190 ;
+             bst:name "Arjun Patel" ;
+             bst:position "Point Guard" ;
+             bst:yearsWithTeam 5 .
+
+
+###  http://example.org/bst#Player_7_Game_2
+bst:Player_7_Game_2 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_7 ;
+                    bst:playedInGame bst:Game_2 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 8.43 ;
+                    bst:points 3 ;
+                    bst:rebounds 1 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_7_Game_3
+bst:Player_7_Game_3 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_7 ;
+                    bst:playedInGame bst:Game_3 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 1 ;
+                    bst:minutes_played 7.31 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 6 ;
+                    bst:rebounds 2 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_7_Game_4
+bst:Player_7_Game_4 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_7 ;
+                    bst:playedInGame bst:Game_4 ;
+                    bst:assists 0 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 3.56 ;
+                    bst:points 2 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_7_Game_6
+bst:Player_7_Game_6 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_7 ;
+                    bst:playedInGame bst:Game_6 ;
+                    bst:assists 0 ;
+                    bst:defensiveRebs 1 ;
+                    bst:fouls 1 ;
+                    bst:minutes_played 6.45 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 3 ;
+                    bst:rebounds 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_7_Game_8
+bst:Player_7_Game_8 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_7 ;
+                    bst:playedInGame bst:Game_8 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 0 ;
+                    bst:minutes_played 9.38 ;
+                    bst:points 4 ;
+                    bst:rebounds 3 ;
+                    bst:scored2Pointers 2 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_7_Game_9
+bst:Player_7_Game_9 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_7 ;
+                    bst:playedInGame bst:Game_9 ;
+                    bst:assists 1 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 7.51 ;
+                    bst:points 3 ;
+                    bst:rebounds 2 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_8
+bst:Player_8 rdf:type owl:NamedIndividual ,
+                      bst:Player ;
+             bst:dob "2000-09-19"^^xsd:date ;
+             bst:height 215 ;
+             bst:name "Lars Schmidt" ;
+             bst:position "Center" ;
+             bst:yearsWithTeam 2 .
+
+
+###  http://example.org/bst#Player_8_Game_1
+bst:Player_8_Game_1 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_8 ;
+                    bst:playedInGame bst:Game_1 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 22.32 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 14 ;
+                    bst:rebounds 5 ;
+                    bst:scored2Pointers 7 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_8_Game_10
+bst:Player_8_Game_10 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_8 ;
+                     bst:playedInGame bst:Game_10 ;
+                     bst:assists 2 ;
+                     bst:defensiveRebs 5 ;
+                     bst:fouls 1 ;
+                     bst:minutes_played 16.42 ;
+                     bst:offensiveRebs 1 ;
+                     bst:points 9 ;
+                     bst:rebounds 6 ;
+                     bst:scored2Pointers 3 ;
+                     bst:scored3Pointers 1 ;
+                     bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_8_Game_2
+bst:Player_8_Game_2 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_8 ;
+                    bst:playedInGame bst:Game_2 ;
+                    bst:assists 3 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 24.54 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 15 ;
+                    bst:rebounds 5 ;
+                    bst:scored2Pointers 6 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_8_Game_3
+bst:Player_8_Game_3 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_8 ;
+                    bst:playedInGame bst:Game_3 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 5 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 26.51 ;
+                    bst:offensiveRebs 3 ;
+                    bst:points 16 ;
+                    bst:rebounds 8 ;
+                    bst:scored2Pointers 8 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_8_Game_4
+bst:Player_8_Game_4 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_8 ;
+                    bst:playedInGame bst:Game_4 ;
+                    bst:assists 0 ;
+                    bst:defensiveRebs 4 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 19.53 ;
+                    bst:points 11 ;
+                    bst:rebounds 4 ;
+                    bst:scored2Pointers 4 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_8_Game_5
+bst:Player_8_Game_5 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_8 ;
+                    bst:playedInGame bst:Game_5 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 4 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 21.49 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 14 ;
+                    bst:rebounds 6 ;
+                    bst:scored2Pointers 7 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_8_Game_6
+bst:Player_8_Game_6 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_8 ;
+                    bst:playedInGame bst:Game_6 ;
+                    bst:assists 4 ;
+                    bst:defensiveRebs 5 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 27.39 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 17 ;
+                    bst:rebounds 7 ;
+                    bst:scored2Pointers 7 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_8_Game_7
+bst:Player_8_Game_7 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_8 ;
+                    bst:playedInGame bst:Game_7 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 3 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 22.34 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 15 ;
+                    bst:rebounds 5 ;
+                    bst:scored2Pointers 6 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_8_Game_8
+bst:Player_8_Game_8 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_8 ;
+                    bst:playedInGame bst:Game_8 ;
+                    bst:assists 2 ;
+                    bst:defensiveRebs 6 ;
+                    bst:fouls 5 ;
+                    bst:minutes_played 29 ;
+                    bst:offensiveRebs 3 ;
+                    bst:points 20 ;
+                    bst:rebounds 9 ;
+                    bst:scored2Pointers 7 ;
+                    bst:scored3Pointers 2 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_8_Game_9
+bst:Player_8_Game_9 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_8 ;
+                    bst:playedInGame bst:Game_9 ;
+                    bst:assists 4 ;
+                    bst:defensiveRebs 8 ;
+                    bst:fouls 4 ;
+                    bst:minutes_played 28.54 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 19 ;
+                    bst:rebounds 10 ;
+                    bst:scored2Pointers 8 ;
+                    bst:scored3Pointers 1 ;
+                    bst:starter "yes" .
+
+
+###  http://example.org/bst#Player_9
+bst:Player_9 rdf:type owl:NamedIndividual ,
+                      bst:Player ;
+             bst:dob "2001-07-23"^^xsd:date ;
+             bst:height 210 ;
+             bst:name "Viktor Kuznetsov" ;
+             bst:position "Center" ;
+             bst:yearsWithTeam 1 .
+
+
+###  http://example.org/bst#Player_9_Game_1
+bst:Player_9_Game_1 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_9 ;
+                    bst:playedInGame bst:Game_1 ;
+                    bst:assists 0 ;
+                    bst:defensiveRebs 2 ;
+                    bst:fouls 3 ;
+                    bst:minutes_played 6.32 ;
+                    bst:points 2 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_9_Game_10
+bst:Player_9_Game_10 rdf:type owl:NamedIndividual ,
+                              bst:Player_Stat ;
+                     bst:belongToPlayer bst:Player_9 ;
+                     bst:playedInGame bst:Game_10 ;
+                     bst:assists 2 ;
+                     bst:defensiveRebs 3 ;
+                     bst:fouls 3 ;
+                     bst:minutes_played 8.46 ;
+                     bst:points 4 ;
+                     bst:rebounds 3 ;
+                     bst:scored2Pointers 2 ;
+                     bst:starter "no" .
+
+
+###  http://example.org/bst#Player_9_Game_3
+bst:Player_9_Game_3 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_9 ;
+                    bst:playedInGame bst:Game_3 ;
+                    bst:assists 0 ;
+                    bst:fouls 1 ;
+                    bst:minutes_played 5.54 ;
+                    bst:offensiveRebs 1 ;
+                    bst:points 2 ;
+                    bst:rebounds 1 ;
+                    bst:scored2Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_9_Game_6
+bst:Player_9_Game_6 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_9 ;
+                    bst:playedInGame bst:Game_6 ;
+                    bst:assists 1 ;
+                    bst:fouls 2 ;
+                    bst:minutes_played 4.39 ;
+                    bst:offensiveRebs 2 ;
+                    bst:points 2 ;
+                    bst:rebounds 2 ;
+                    bst:scored2Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#Player_9_Game_7
+bst:Player_9_Game_7 rdf:type owl:NamedIndividual ,
+                             bst:Player_Stat ;
+                    bst:belongToPlayer bst:Player_9 ;
+                    bst:playedInGame bst:Game_7 ;
+                    bst:assists 0 ;
+                    bst:fouls 1 ;
+                    bst:minutes_played 3.48 ;
+                    bst:points 2 ;
+                    bst:rebounds 0 ;
+                    bst:scored2Pointers 1 ;
+                    bst:starter "no" .
+
+
+###  http://example.org/bst#SupportStaff_1
+bst:SupportStaff_1 rdf:type owl:NamedIndividual ,
+                            bst:SupportStaff ;
+                   bst:dob "1978-12-05"^^xsd:date ;
+                   bst:name "Miguel Garcia" ;
+                   bst:position "Equipment Manager" .
+
+
+###  http://example.org/bst#Team_1
+bst:Team_1 rdf:type owl:NamedIndividual ,
+                    bst:Team ;
+           bst:playsGame bst:Game_1 ,
+                         bst:Game_10 ,
+                         bst:Game_2 ,
+                         bst:Game_3 ,
+                         bst:Game_4 ,
+                         bst:Game_5 ,
+                         bst:Game_6 ,
+                         bst:Game_7 ,
+                         bst:Game_8 ,
+                         bst:Game_9 .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+bst:stat rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+bst:game rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+bst:player rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+bst:x rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+bst:y rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+bst:score rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+bst:total rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "CaptainCandidates" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> bst:Player ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> bst:x
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> bst:yearsWithTeam ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> bst:x ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> bst:y
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first bst:y ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 4 ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> bst:PossibleCaptain ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> bst:x
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "player bonus" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> bst:Player_Stat ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> bst:stat
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> bst:playedInGame ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> bst:stat ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> bst:game
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> bst:European ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> bst:game
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> bst:belongToPlayer ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> bst:stat ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> bst:player
+                                                                                      ] ;
+                                                                            rdf:rest rdf:nil
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> bst:getsBonus ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> bst:player ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> "Yes"
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "total points scored with 2-point shots" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> bst:scored2Pointers ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> bst:stat ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> bst:score
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#multiply> ;
+                                                                  <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                               rdf:first bst:total ;
+                                                                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                                                                          rdf:first bst:score ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 2 ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                                                             ]
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> bst:total2PointersPoints ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> bst:stat ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> bst:total
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "total points scored with 3-point shots" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> bst:scored3Pointers ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> bst:stat ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> bst:score
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#multiply> ;
+                                                                  <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                               rdf:first bst:total ;
+                                                                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                                                                          rdf:first bst:score ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 3 ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                                                             ]
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> bst:total3PointersPoints ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> bst:stat ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> bst:total
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
