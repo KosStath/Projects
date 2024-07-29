@@ -1,6 +1,8 @@
 # TV Series Database
 
-Welcome to the TV Series Database folder! This folder contains the database schema and associated scripts for managing a TV series database created using SQL and Oracle.
+Welcome to the TV Series Database project! 
+
+This folder contains the database schema and associated scripts for managing a TV series database created using SQL and Oracle.
 
 ## Contents
 
@@ -25,12 +27,12 @@ This folder includes the following files:
 
 ### ER Diagram
 
-- **TV_Series_ERD.drawio**: 
+- **TVSeries_ERD.drawio**: 
   - This file contains the Entity-Relationship Diagram (ERD) of the TV Series database, created using [draw.io](https://app.diagrams.net/). The ERD provides a visual representation of the database schema, including entities, relationships, and attributes.
 
 ### Documentation
 
-- **Table_Specifications.docx**: 
+- **Table Specifications.docx**: 
   - A Word document detailing the specifications of each table in the database, including descriptions of the columns, data types, and relationships. This document helps to understand the structure and purpose of each table in the schema.
 
 ## How to Use
@@ -49,10 +51,10 @@ This folder includes the following files:
    - If needed, execute the `Drop.sql` script to drop tables and remove the schema.
 
 5. **Review the ERD**:
-   - Open `TV_Series_ERD.drawio` in draw.io to view the Entity-Relationship Diagram for a visual representation of the database structure.
+   - Open `TVSeries_ERD.drawio` in draw.io to view the Entity-Relationship Diagram for a visual representation of the database structure.
 
 6. **Consult the Table Specifications**:
-   - Review the `Table_Specifications.docx` document for detailed information about each table and its columns.
+   - Review the `Table Specifications.docx` document for detailed information about each table and its columns.
 
 ## Getting Started
 
@@ -64,10 +66,10 @@ This folder includes the following files:
    - Open the SQL scripts in your preferred SQL editor or command line tool and execute them in the provided order.
 
 3. **Viewing the ERD**:
-   - Use draw.io to open and view the `TV_Series_ERD.drawio` file.
+   - Use draw.io to open and view the `TVSeries_ERD.drawio` file.
 
 4. **Documentation**:
-   - Open the `Table_Specifications.docx` in Microsoft Word or a compatible word processor.
+   - Open the `Table Specifications.docx` in Microsoft Word or a compatible word processor.
 
 ## Contact
 
